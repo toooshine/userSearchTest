@@ -19,11 +19,11 @@ function App() {
         const response = await fetch(`https://api.github.com/search/users?q=${searchTerm}`);
         if(response.ok){
           const data = await response.json();
-        if (data){
-          setErreur('');
-          data.items.map(user => searchResults.push(user.login));
-          setUsers(searchResults);
-        }
+          if (data){
+            setErreur('');
+            data.items.map(user => searchResults.push(user.login));
+            setUsers(searchResults);
+          }
       }else{
         setErreur(response.status);
         setSearchTerm('')
@@ -39,10 +39,9 @@ function App() {
     setSearchTerm(event.target.value);
   };
 
-  const listOfUsers = () => ( 
+  const listOfUsers = 
     searchTerm &&
-    users.map((user,i) => <ListOfUsers key={i} users={user} />)
-  );
+    users.map((user,i) => <ListOfUsers key={i} users={user} />);
 
   // Handle error cases
 
@@ -59,11 +58,10 @@ function App() {
     
   }
     
-  const searchFunction = () => (
+  const searchFunction = 
     <div>
-      {listOfUsers()}
-    </div>
-  );
+      {listOfUsers}
+    </div>;
 
   return (
     <div>
@@ -72,7 +70,7 @@ function App() {
         <input type='text'  placeholder="Search" value={searchTerm}
           onChange={handleChange} />
       </div>
-      { error !== '' ? errorHandleFunction(error) : searchFunction()}
+      { error !== '' ? errorHandleFunction(error) : searchFunction}
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function ListOfUsers(props) {
+function ListOfUsers({users}) {
     return(
             <li>
-                {props.users}
+                {users}
             </li>
     )
 }
